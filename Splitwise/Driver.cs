@@ -12,13 +12,11 @@ namespace Splitwise
     {
         static void Main(string[] args)
         {
-            IUserManagerFactory userManagerFactory = new UserManagerFactory();
-            IExpenseManagerFactory expenseFactory = new ExpenseManagerFactory();
-            IUser userService = new UserService();
-            IExpense expenseService = new ExpenseService();
+            IUserServiceFactory userFactory = new UserServiceFactory();
+            IExpenseServiceFactory expenseFactory = new ExpenseServiceFactory();
 
-            UserManager userManager = userManagerFactory.CreateUserManager(userService);
-            ExpenseManager expenseManager = expenseFactory.CreateExpenseManager(userService, expenseService);
+            UserManager userManager = new UserManager(userFactory.CreateUserService(ServiceType.USERSERVICE));
+            ExpenseManager expenseManager = new ExpenseManager(expenseFactory.CreateExpenseService(ServiceType.EXPENSESERVICE));
 
             userManager.AddUser(new User("u1", "User1", "gaurav@workat.tech", "9876543210"));
             userManager.AddUser(new User("u2", "User2", "sagar@workat.tech", "9876543210"));

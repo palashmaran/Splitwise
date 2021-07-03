@@ -11,10 +11,9 @@ namespace Splitwise.Controllers
     public class ExpenseManager
     {
         private IExpense expenseService;
-        private IUser userService;
-        public ExpenseManager(IUser userService, IExpense expenseService)
+        
+        public ExpenseManager( IExpense expenseService)
         {
-            this.userService = userService;
             this.expenseService = expenseService;
         }
 
